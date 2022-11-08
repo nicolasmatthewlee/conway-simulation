@@ -109,7 +109,7 @@ class Grid {
 }
 
 // create grid
-let grid = new Grid(3);
+let grid = new Grid(20);
 body.appendChild(grid.object);
 
 // play button
@@ -123,10 +123,11 @@ play_button.addEventListener('click',()=> {
     play_button.classList.toggle('active');
 
     if (play_button.classList.contains('active')) {
-
+        play_button.textContent='pause';
         // must call grid.simulate() so that `this` references grid
         timer_id = setInterval(()=>grid.simulate(),200);
     } else {
+        play_button.textContent='play'
         clearInterval(timer_id);
     }
 
