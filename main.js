@@ -1,4 +1,4 @@
-body = document.querySelector('body');
+main_content = document.querySelector('.main-content');
 
 grid_object = document.createElement('div');
 
@@ -109,8 +109,8 @@ class Grid {
 }
 
 // create grid
-let grid = new Grid(20);
-body.appendChild(grid.object);
+let grid = new Grid(30);
+main_content.appendChild(grid.object);
 
 // play button
 let timer_id=0;
@@ -125,7 +125,7 @@ play_button.addEventListener('click',()=> {
     if (play_button.classList.contains('active')) {
         play_button.textContent='pause';
         // must call grid.simulate() so that `this` references grid
-        timer_id = setInterval(()=>grid.simulate(),200);
+        timer_id = setInterval(()=>grid.simulate(),100);
     } else {
         play_button.textContent='play'
         clearInterval(timer_id);
@@ -133,4 +133,4 @@ play_button.addEventListener('click',()=> {
 
 });
     
-body.appendChild(play_button);
+main_content.appendChild(play_button);

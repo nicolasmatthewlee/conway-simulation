@@ -1,10 +1,39 @@
+:root {
+    --header-height: 80px;
+    --dark-gray: rgb(30,30,30);
+    background-color: black;
+    font-family: 'IBM Plex Sans',sans-serif;
+}
+
+.header {
+    height: var(--header-height);
+    display: flex;
+    align-items: center;
+}
+
+.title {
+    margin-left: 20px;
+
+    font-size: 40px;
+    font-weight: 600;
+    color: white;
+}
+
+.main-content {
+    height: calc(100vh - var(--header-height));
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
 .grid {
-    height: 300px;
-    width: 300px;
-    background-color: rgb(48, 48, 48);
+    height: 600px;
+    width: 600px;
+    background-color: var(--dark-gray);
 
     display: grid;
-
     gap: 1px;
 }
 
@@ -22,4 +51,11 @@
 .play-button {
     width: 100px;
     height: 50px;
+
+    font-family: 'IBM Plex Sans',sans-serif;
+    font-size: 20px;
+    color: white;
+    border: 3px solid white;
+    border-radius: 25px;
+    background-color: black;
 }
