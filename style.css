@@ -18,3 +18,8 @@
 .grid-item.active {
     background-color: green;
 }
+
+.play-button {
+    width: 100px;
+    height: 50px;
+}
