@@ -112,11 +112,24 @@ class Grid {
 let grid = new Grid(3);
 body.appendChild(grid.object);
 
-// simulate every second
-// must call grid.simulate() so that `this` references grid
-//setInterval(()=>grid.simulate(),2000);
+// play button
+let timer_id=0;
 
 let play_button = document.createElement('button');
+play_button.textContent='play';
 play_button.setAttribute('class','play-button');
-play_button.addEventListener('click',()=>grid.simulate())
-body.appendChild(play_button)
+play_button.addEventListener('click',()=> {
+
+    play_button.classList.toggle('active');
+
+    if (play_button.classList.contains('active')) {
+
+        // must call grid.simulate() so that `this` references grid
+        timer_id = setInterval(()=>grid.simulate(),200);
+    } else {
+        clearInterval(timer_id);
+    }
+
+});
+    
+body.appendChild(play_button);
