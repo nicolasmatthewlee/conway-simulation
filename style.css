@@ -1,0 +1,19 @@
+.grid {
+    height: 500px;
+    width: 500px;
+    background-color: red;
+
+    display: grid;
+
+    gap: 1px;
+}
+
+.grid-item {
+    height: 1fr;
+    width: 1fr;
+    background-color: blue;
+}
+
+.grid-item.active {
+    background-color: green;
+}
