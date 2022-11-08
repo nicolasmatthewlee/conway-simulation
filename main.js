@@ -77,14 +77,10 @@ class Grid {
                             try {
                                 item_sum+=this.items[x+dx][y+dy].value;
                             } catch {}
-                            
                         }
                     }
                 }
-
                 sums[x].push(item_sum);
-
-                console.log(`${x},${y}:${item_sum}`)
 
             }
         }
@@ -97,7 +93,7 @@ class Grid {
 
                 // adjust value
                 if (this.items[x][y].value==1) {
-                    if (item_sum==2 || item_sum==3) {
+                    if (!(item_sum==2 || item_sum==3)) {
                         this.items[x][y].value=0;
                         this.items[x][y].update();
                     }
