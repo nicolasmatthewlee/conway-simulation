@@ -11,6 +11,7 @@ class GridItem {
 
         // must bind to access this.value in this.toggle
         this.object.addEventListener('mouseover',this.toggle.bind(this));
+        this.object.addEventListener('click',this.toggle_click.bind(this));
 
         this.value=0;
 
@@ -21,6 +22,11 @@ class GridItem {
             this.object.classList.toggle('active');
             this.value=!this.value;
         }
+    }
+
+    toggle_click() {
+        this.object.classList.toggle('active');
+        this.value=!this.value;
     }
 
     update() {
