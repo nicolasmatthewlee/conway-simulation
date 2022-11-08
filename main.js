@@ -10,15 +10,17 @@ class GridItem {
         this.object.setAttribute('class','grid-item');
 
         // must bind to access this.value in this.toggle
-        this.object.addEventListener('click',this.toggle.bind(this));
+        this.object.addEventListener('mouseover',this.toggle.bind(this));
 
         this.value=0;
 
     }
 
     toggle() {
-        this.object.classList.toggle('active');
-        this.value=!this.value;
+        if (mousedown) {
+            this.object.classList.toggle('active');
+            this.value=!this.value;
+        }
     }
 
     update() {
@@ -111,6 +113,11 @@ class Grid {
 // create grid
 let grid = new Grid(30);
 main_content.appendChild(grid.object);
+
+// listen for mousedown to allow for dragging
+let mousedown = false;
+addEventListener('mousedown', () => mousedown=true);
+addEventListener('mouseup', () => mousedown=false);
 
 // play button
 let timer_id=0;
