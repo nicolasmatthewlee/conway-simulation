@@ -11,7 +11,7 @@ class GridItem {
 
         // must bind to access this.value in this.toggle
         this.object.addEventListener('mouseover',this.toggle.bind(this));
-        this.object.addEventListener('click',this.toggle_click.bind(this));
+        this.object.addEventListener('mousedown',this.toggle_click.bind(this));
 
         this.value=0;
 
@@ -101,11 +101,13 @@ class Grid {
 
                 // adjust value
                 if (this.items[x][y].value==1) {
+                    // conway's rules: !(item_sum==2 || item_sum==3)
                     if (!(item_sum==2 || item_sum==3)) {
                         this.items[x][y].value=0;
                         this.items[x][y].update();
                     }
                 } else {
+                    // conway's rules: item_sum==3
                     if (item_sum==3) {
                         this.items[x][y].value=1;
                         this.items[x][y].update();
@@ -117,7 +119,7 @@ class Grid {
 }
 
 // create grid
-let grid = new Grid(30);
+let grid = new Grid(60);
 main_content.appendChild(grid.object);
 
 // listen for mousedown to allow for dragging
