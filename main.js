@@ -119,7 +119,7 @@ class Grid {
 }
 
 // create grid
-let grid = new Grid(100);
+let grid = new Grid(150);
 main_content.appendChild(grid.object);
 
 // listen for mousedown to allow for dragging

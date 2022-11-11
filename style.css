@@ -35,6 +35,10 @@ button {
     overflow: scroll;
     scrollbar-width: none; /* Firefox */
     -ms-overflow-style: none;  /* IE 10+ */
+
+    /* prevents "rubber-band" effect of overscrolling */
+    overscroll-behavior-x: none;
+    overscroll-behavior-y: none;
 }
 
 ::-webkit-scrollbar {
