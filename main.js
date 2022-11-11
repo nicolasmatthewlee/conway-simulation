@@ -48,7 +48,7 @@ class Grid {
 
         this.object = document.createElement('div');
         this.object.setAttribute('class','grid');
-        this.object.style.gridTemplate = `repeat(${n},10px) / repeat(${n},10px)`;
+        this.object.style.gridTemplate = `repeat(${n},1fr) / repeat(${n},1fr)`;
 
         // add grid items to array
         for (let r=0;r<this.length;r++) {
@@ -119,8 +119,10 @@ class Grid {
 }
 
 // create grid
-let grid = new Grid(150);
+let grid = new Grid(50);
 main_content.appendChild(grid.object);
+
+// create default
 
 // listen for mousedown to allow for dragging
 let mousedown = false;
@@ -131,7 +133,7 @@ addEventListener('mouseup', () => mousedown=false);
 let timer_id=0;
 
 let play_button = document.createElement('button');
-play_button.textContent='play';
+play_button.textContent='run';
 play_button.setAttribute('class','play-button');
 play_button.addEventListener('click',()=> {
 
@@ -142,7 +144,7 @@ play_button.addEventListener('click',()=> {
         // must call grid.simulate() so that `this` references grid
         timer_id = setInterval(()=>grid.simulate(),100);
     } else {
-        play_button.textContent='play'
+        play_button.textContent='run';
         clearInterval(timer_id);
     }
 
