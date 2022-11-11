@@ -118,60 +118,158 @@ class Grid {
             }
         }
     }
+
+    create_gosper_glider_gun(x=0,y=0,r=0) {
+        // r specifies the number of clockwise rotations
+
+        let coordinates = [
+            [1,5],
+            [1,6],
+            [2,5],
+            [2,6],
+
+            [11,5],
+            [11,6],
+            [11,7],
+            [12,4],
+            [12,8],
+            [13,3],
+            [13,9],
+            [14,3],
+            [14,9],
+            [15,6],
+            [16,4],
+            [16,8],
+            [17,5],
+            [17,6],
+            [17,7],
+            [18,6],
+
+            [21,3],
+            [21,4],
+            [21,5],
+            [22,3],
+            [22,4],
+            [22,5],
+            [23,2],
+            [23,6],
+            [25,1],
+            [25,2],
+            [25,6],
+            [25,7],
+
+            [35,3],
+            [35,4],
+            [36,3],
+            [36,4]
+        ]
+
+        for (let xy of coordinates) {
+
+            let transformed_x = xy[0];
+            let transformed_y = xy[1];
+
+            for(let n=r;n>0;n--) {
+                let placeholder = transformed_x;
+
+                transformed_x = -1*transformed_y;
+                transformed_y = placeholder;
+            }
+
+            transformed_x += x;
+            transformed_y += y;
+
+            this.items[transformed_y][transformed_x].value=1;
+            this.items[transformed_y][transformed_x].update();
+        }
+
+    }
+
+    create_absorber(x=0,y=0,r=0) {
+        
+        let coordinates = [
+            [0,0],
+            [0,1],
+            [1,0],
+            [2,1],
+            [2,2],
+            [2,3],
+            [3,3]
+        ]
+
+        for (let xy of coordinates) {
+
+            let transformed_x = xy[0];
+            let transformed_y = xy[1];
+
+            for(let n=r;n>0;n--) {
+                let placeholder = transformed_x;
+
+                transformed_x = -1*transformed_y;
+                transformed_y = placeholder;
+            }
+
+            transformed_x += x;
+            transformed_y += y;
+
+            this.items[transformed_y][transformed_x].value=1;
+            this.items[transformed_y][transformed_x].update();
+        }
+    }
+
+    pattern_1() {
+        this.create_gosper_glider_gun(0,0);
+        this.create_gosper_glider_gun(69,0,1);
+        this.create_gosper_glider_gun(69,69,2);
+        this.create_gosper_glider_gun(0,69,3);
+
+        this.create_gosper_glider_gun(26,50,1);
+        this.create_gosper_glider_gun(50,43);
+        this.create_gosper_glider_gun(72,37,3);
+        this.create_gosper_glider_gun(50,70);
+    }
+
+    pattern_2() {
+        this.create_gosper_glider_gun(12,24);
+        this.create_gosper_glider_gun(68,8,1);
+        this.create_gosper_glider_gun(79,64,2);
+        this.create_gosper_glider_gun(22,81,3);
+        
+        this.create_gosper_glider_gun(39,25,2);
+        this.create_gosper_glider_gun(60,12,2);
+
+        this.create_gosper_glider_gun(71,39,3);
+
+        this.create_gosper_glider_gun(51,65);
+
+        this.create_gosper_glider_gun(20,35,1);
+    }
+
+    pattern_3() {
+        this.create_gosper_glider_gun();
+        this.create_gosper_glider_gun(0,71,3);
+        this.create_gosper_glider_gun(24,52,1);
+        this.create_absorber(40,26,0);
+
+        this.create_gosper_glider_gun(66,0,1);
+        this.create_absorber(30,50,1);
+
+        this.create_gosper_glider_gun(34,89,3);
+        this.create_gosper_glider_gun(63,89,3);
+
+        this.create_gosper_glider_gun(89,5,1);
+    }
 }
 
 // create grid
-let grid = new Grid(50);
+let grid = new Grid(90);
 main_content.appendChild(grid.object);
 
-// create default pattern
-let x = 0;
-let y = 0;
-let gosper_glider_gun = [
-    [x+1,y+5],
-    [x+1,y+6],
-    [x+2,y+5],
-    [x+2,y+6],
-
-    [x+11,y+5],
-    [x+11,y+6],
-    [x+11,y+7],
-    [x+12,y+4],
-    [x+12,y+8],
-    [x+13,y+3],
-    [x+13,y+9],
-    [x+14,y+3],
-    [x+14,y+9],
-    [x+15,y+6],
-    [x+16,y+4],
-    [x+16,y+8],
-    [x+17,y+5],
-    [x+17,y+6],
-    [x+17,y+7],
-    [x+18,y+6],
-
-    [x+21,y+3],
-    [x+21,y+4],
-    [x+21,y+5],
-    [x+22,y+3],
-    [x+22,y+4],
-    [x+22,y+5],
-    [x+23,y+2],
-    [x+23,y+6],
-    [x+25,y+1],
-    [x+25,y+2],
-    [x+25,y+6],
-    [x+25,y+7],
-
-    [x+35,y+3],
-    [x+35,y+4],
-    [x+36,y+3],
-    [x+36,y+4]
-]
-
-for (let xy of gosper_glider_gun) {
-    grid.items[xy[1]][xy[0]].value=1;
-    grid.items[xy[1]][xy[0]].update();
+// load random default pattern
+switch(Math.floor(Math.random()*3)) {
+    case 0: grid.pattern_1(); break;
+    case 1: grid.pattern_2(); break;
+    case 2: grid.pattern_3(); break;
 }
 
 // listen for mousedown to allow for dragging
@@ -192,7 +290,7 @@ play_button.addEventListener('click',()=> {
     if (play_button.classList.contains('active')) {
         play_button.textContent='pause';
         // must call grid.simulate() so that `this` references grid
-        timer_id = setInterval(()=>grid.simulate(),100);
+        timer_id = setInterval(()=>grid.simulate(),50);
     } else {
         play_button.textContent='run';
         clearInterval(timer_id);
