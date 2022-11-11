@@ -48,7 +48,9 @@ class Grid {
 
         this.object = document.createElement('div');
         this.object.setAttribute('class','grid');
-        this.object.style.gridTemplate = `repeat(${n},1fr) / repeat(${n},1fr)`;
+
+        /* must specify minimum dimension at `0px` as opposed to the default `auto` so grid can dynamically resize appropriately at smaller sizes */
+        this.object.style.gridTemplate = `repeat(${n},minmax(0px,1fr)) / repeat(${n},minmax(0px,1fr))`;
 
         // add grid items to array
         for (let r=0;r<this.length;r++) {
