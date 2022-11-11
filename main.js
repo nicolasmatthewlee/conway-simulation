@@ -48,7 +48,7 @@ class Grid {
 
         this.object = document.createElement('div');
         this.object.setAttribute('class','grid');
-        this.object.style.gridTemplate = `repeat(${n},1fr) / repeat(${n},1fr)`;
+        this.object.style.gridTemplate = `repeat(${n},10px) / repeat(${n},10px)`;
 
         // add grid items to array
         for (let r=0;r<this.length;r++) {
@@ -119,7 +119,7 @@ class Grid {
 }
 
 // create grid
-let grid = new Grid(60);
+let grid = new Grid(100);
 main_content.appendChild(grid.object);
 
 // listen for mousedown to allow for dragging
